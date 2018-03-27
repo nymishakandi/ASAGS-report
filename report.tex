@@ -21,6 +21,8 @@
 % Just compile this file using pdflatex after making all required changes.
 
 \documentclass[12pt,a4paper]{report}
+\renewcommand{\baselinestretch}{1.5} 
+\usepackage[titletoc]{appendix}
 \usepackage{float}
 \usepackage{listings}
 \usepackage{setspace}
@@ -53,13 +55,13 @@
 \input{./prob-definition.tex}
 \input{./introduction.tex} 
 \input{./literature_survey.tex}
+\input{./requirements}
 \input{./methodology}
 \input{./dataset}
 \input{./design}
 \input{./implementation.tex}
-\input{./code.tex}
 \input{./future-work.tex}
 \input{./conclusion.tex}
 \input{./references.tex}
-
+\input{./appendix.tex}
 \end{document}
