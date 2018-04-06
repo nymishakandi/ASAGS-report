@@ -5,7 +5,7 @@ Surveillance footage is usually generated of size 240 x 320 i.e of aspect ratio 
 Video conversion command:-\\
 \textit{ffmpeg -i {inputVideo} -vf scale=320:240 outputVideo.avi}
 \par
-Further the frame is resized to 75 x 100 size maintaining the same aspect ratio using openCV functions. This resized frame is further converted to grayscale using openCV cvtColor method. \\
+Further the frame is resized to 75 x 100 size maintaining the same aspect ratio using openCV functions. This resized frame is further converted to grayscale using openCV cvtColor() method. \\
 Size reduction command:\\
 frame = cv2.resize(frame, dim, interpolation = cv2.INTER\_AREA)\\
 Grayscale conversion commands: \\
@@ -18,7 +18,7 @@ frame = cv2.cvtColor(frame,cv2.COLOR\_BGR2GRAY)
 \end{figure}
 \end{center}
 \section{Optical Flow}
-Optical Flow is estimated between the pair of consecutive frames which gives a flow vector for each pixel in the current frame, matching it to pixel in next frame. C. Liu’s Optical Flow algorithm is used. It was initially developed in C++ which MATLAB can easily port. Conda package was used to port the algorithm into Python. \par
+Optical Flow is estimated between the pair of consecutive frames which gives a flow vector for each pixel in the current frame, matching it to pixel in next frame. C. Liu`s Optical Flow algorithm is used. It was initially developed in C++ which MATLAB can easily port. Conda package was used to port the algorithm into Python. \par
 	In our implementation we are considering two frames in every four frames i.e the third frame from current frame and calculating optical flow between them. This process continues for entire video. \par \textbf{bob.ip.optflow.liu.sor.flow(frame1,frame2)} is used to calculate optical flow. It returns value of each pixel into a numpy array of dimension equal to resolution of the frame.
 \begin{center}
 \begin{figure}[H]
@@ -64,6 +64,6 @@ S(x) = $\frac{1}{1+e^{-x}} = \frac{e^x}{1+e^x}$
 \section{Violence Detection}
 Keras module has been used to train the neural network. The average FPS rate of a video is to be considered 30fps. Average surveillance videos have an FPS rate of 30fps. We consider every 3rd frame for calculating ViF’s. 
 \par
-	Every 30 frames , i.e every 1 second 336 length array is generated and that array is sent to the previously generated model for prediction. If violence is detected, violence probability is shown on the screen. Multiple lengthy videos have been given an input to the program and it is able to detect the instance where crowd behaviour tends to violent from non\_violent.
+	Every 30 frames , i.e every 1 second 336 length array is generated and that array is sent to the previously generated model for prediction. If violence is detected, violence probability is shown on the screen. Multiple lengthy videos have been given as input to the program and it is able to detect the instance where crowd behaviour tends to violent from non\_violent.
 
 
