@@ -23,6 +23,35 @@
 \documentclass[12pt,a4paper]{report}
 \renewcommand{\baselinestretch}{1.5} 
 \usepackage[titletoc]{appendix}
+\usepackage{titlesec}
+\usepackage{etoolbox}
+\usepackage[a4paper,bindingoffset=0.2in,%
+            left=2.5cm,right=2cm,top=2cm,bottom=3cm,%
+            footskip=.25in]{geometry}
+
+\newcommand{\chapfnt}{\fontsize{16}{19}}
+\newcommand{\secfnt}{\fontsize{14}{17}}
+\makeatletter
+\patchcmd{\ttlh@hang}{\parindent\z@}{\parindent\z@\leavevmode}{}{}
+\patchcmd{\ttlh@hang}{\noindent}{}{}{}
+\makeatother
+\titleformat{\chapter}[display]
+{\normalfont\chapfnt\bfseries\centering}{\chaptertitlename\ \thechapter}{20pt}{\chapfnt}
+\titlespacing*{\chapter}
+    {1.5cm} % left
+    {1cm} % before
+	{1cm}
+	\titleformat{\section}
+{\normalfont\secfnt\bfseries}{\thesection}{1em}{\secfnt}
+\makeatletter
+\def\@makechapterhead#1{%
+  \vspace*{0\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    \interlinepenalty\@M
+    \fontsize{16}{19}\bfseries  \thechapter.\quad #1\par\nobreak
+    \vskip 20\p@
+  }}
+\makeatother
 \usepackage{float}
 \usepackage{listings}
 \usepackage{setspace}
