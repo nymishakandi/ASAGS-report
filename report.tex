@@ -21,37 +21,49 @@
 % Just compile this file using pdflatex after making all required changes.
 
 \documentclass[12pt,a4paper]{report}
-\renewcommand{\baselinestretch}{1.5} 
-\usepackage[titletoc]{appendix}
-\usepackage{titlesec}
-\usepackage{etoolbox}
+
 \usepackage[a4paper,bindingoffset=0.2in,%
             left=2.5cm,right=2cm,top=2cm,bottom=3cm,%
             footskip=.25in]{geometry}
 
 \newcommand{\chapfnt}{\fontsize{16}{19}}
 \newcommand{\secfnt}{\fontsize{14}{17}}
+
+\usepackage{titlesec}
+\usepackage{etoolbox}
+
+\usepackage[titles]{tocloft}
+\renewcommand{\cftdot}{}
+
+\renewcommand{\cftchapfont}{\normalfont}
+\renewcommand{\cftchappagefont}{\normalfont}
+
 \makeatletter
 \patchcmd{\ttlh@hang}{\parindent\z@}{\parindent\z@\leavevmode}{}{}
 \patchcmd{\ttlh@hang}{\noindent}{}{}{}
 \makeatother
+
 \titleformat{\chapter}[display]
 {\normalfont\chapfnt\bfseries\centering}{\chaptertitlename\ \thechapter}{20pt}{\chapfnt}
 \titlespacing*{\chapter}
     {1.5cm} % left
-    {0cm} % before
+    {1cm} % before
 	{1cm}
-	\titleformat{\section}
+\titleformat{\section}
 {\normalfont\secfnt\bfseries}{\thesection}{1em}{\secfnt}
-%\makeatletter
-%\def\@makechapterhead#1{%
- % \vspace*{0\p@}%
-  %{\parindent \z@ \raggedright \normalfont
-    %\interlinepenalty\@M
-    %\fontsize{16}{19}\bfseries\centering  \thechapter.\quad #1\par\nobreak
-    %\vskip 20\p@
-  %}}
-%\makeatother
+
+\makeatletter
+\def\@makechapterhead#1{%
+  \vspace*{0\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    \interlinepenalty\@M
+    \fontsize{16}{19}\bfseries\centering  \thechapter.\quad #1\par\nobreak
+    \vskip 20\p@
+  }}
+\makeatother
+
+\renewcommand{\baselinestretch}{1.5} 
+\usepackage[titletoc]{appendix}
 \usepackage{float}
 \usepackage{listings}
 \usepackage{setspace}
@@ -63,11 +75,12 @@
 \usepackage{caption}
 \usepackage[pdftex]{graphicx} %for embedding images
 \usepackage{url} %for proper url entries
-\usepackage[bookmarks, colorlinks=false, pdfborder={0 0 0}, pdftitle={ASAGS_report}, pdfauthor={sekhar}, pdfsubject={<subject here>}, pdfkeywords={<keywords here>}]{hyperref} %for creating links in the pdf version and other additional pdf attributes, no effect on the printed document
+\usepackage[bookmarks, colorlinks=false, pdfborder={0 0 0}, pdftitle={ASAGS_report}, pdfauthor={sekhar,dasarada}, pdfsubject={ASAGS}, pdfkeywords={<keywords here>}]{hyperref} %for creating links in the pdf version and other additional pdf attributes, no effect on the printed document
 %\usepackage[final]{pdfpages} %for embedding another pdf, remove if not required
 
 \begin{document}
 \renewcommand\bibname{References} %Renames "Bibliography" to "References" on ref page
+\input{./title.tex}
 
 %include other pages
 \pagenumbering{roman} %numbering before main content starts
@@ -76,13 +89,16 @@
 \input{./acknowledge.tex}
 \input{./abstract.tex}
 
-\tableofcontents
+\addtocontents{lof}{\protect\addcontentsline{toc}{chapter}{List of Figures}}
 \listoffigures
+\addtocontents{lot}{\protect\addcontentsline{toc}{chapter}{List of Tables}}
 \listoftables
+\tableofcontents
 
 \newpage
 \pagenumbering{arabic} %reset numbering to normal for the main content
 
+%\input{./prob-definition.tex}
 \input{./introduction.tex} 
 \input{./literature_survey.tex}
 \input{./requirements}
@@ -93,4 +109,3 @@
 \input{./references.tex}
 \input{./appendix.tex}
 \end{document}
-\grid
