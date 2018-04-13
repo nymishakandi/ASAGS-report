@@ -35,7 +35,7 @@ $ m_{x,y,t} = \sqrt{V_{x,t}^2 + V_{y,t}^2} $ \\
 After calculating flow vector , for each pixel in each frame we obtain the binary indicators using the following formula:- \\
 \begin{equation}
 b_{x,y,t} = \begin{cases}
-\text {1,\quad}if\quad |m_{x,y,t+1} - m_{x,y,t-1}| \geq \theta\\
+\text {1,\quad}if\quad |m_{x,y,t} - m_{x,y,t-1}| \geq \theta\\
 \text {0\quad}   \quad otherwise
 \end{cases}
 \end{equation}

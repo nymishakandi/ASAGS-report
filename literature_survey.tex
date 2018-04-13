@@ -182,3 +182,26 @@ I(x,y,t) = T(x + \Delta x, y + \Delta y, t + \Delta t)
 \begin{equation}
 \frac{\partial I}{\partial x}V_x + \frac{\partial I}{\partial y}V_y + \frac{\partial I}{\partial t} = 0
 \end{equation}
+
+\section{Violent Flow(ViF) Descriptors}
+For a sequence of frames, Violent Flows(ViF) Descriptor are produced by first estimating Optical Flow. Optical Flow gives a flow vector of a pixel in current frame matching it with a pixel in next frame. Magnitudes of these flow vectors are calculated which are arbitrary components which are dependent on frame resolution, different motions in different spatio-temporal locations, etc. By comparing magnitudes, meaningful measures of the significance of observed motion magnitudes in each frame compared to its predecessor are obtained. Binary indicators for each pixel is obtained by comparing change of magnitudes of each pixel with mean change of magnitudes of a frame. Average of these binary indicators are calculated for each pixel over all frames. Later these average values of binary indicators are divided into M * N non-overlapping cells in which each cell contain magnitude change frequencies. Those frequencies in the cells are represented by fixed-sized histogram and all the histograms are concantenated to form a single descriptor vector. In a simple way, ViF descriptor is a vector of frequencies quantized values of binaty indicators. 
+
+\section{Oriented Violent Flows(OViF)}
+ViF doesn't consider difference in direction of the same pixel in sequential frames and treat there is no difference if pixels differ only in directions. OViF considers direction of the pixel and it is calculated by using
+\begin{equation}
+\phi_{i,j,t} = arctan(V^y_{i,j,t}/V^x_{i,j,t}) 
+\end{equation}
+Here, t means the t-th frame in a video sequence, and (i, j) indicates the pixel location. Then, for each flow map which corresponds to a frame, we partition it into M × N non-overlapping blocks. After this, since $360^0$ can be equally divided into B sectors and each sector corresponds to a bin of a histogram, the flow-vector magnitude $|V_{i,j,t}|$ is added into the bin where the flow-vector angle $\phi_{i,j,t}$ locates.For each block, we get a histogram and these histograms are then concatenated into a single vector H, which is called Histogram of Oriented Optical Flow (HOOF) with X-dimensions, $X = M \times N \times B$.
+\par
+Subsequently, the HOOF vectors are used to obtain binary indicators:
+\begin{equation}
+b_{x,t} = \begin{cases}
+\text {1,\quad}if\quad |H_{x,t} - H_{x,t-1}| \geq \theta\\
+\text {0\quad}   \quad otherwise
+\end{cases}
+\end{equation}
+Here, x is the x-th dimension of the feature vector H, and $\theta$ is the average value of $|H_{x,t}-H_{x,t-1}|$, x$\subseteq$[1,X]. The above equation explicitly reflects the magnitude changes in different sectors. The mean magnitude-change vector is donated as:
+\begin{equation}
+\overline b_{x} = \frac{1}{T}\sum_{t}b_{x,t}
+\end{equation}
+Finally, b̄ is the final OViF vector for a sequence of frames, which counts the motion magnitude change frequencies in both direction sectors and spatial regions.
