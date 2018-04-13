@@ -1,6 +1,6 @@
 \chapter{Methodology and Design}
 \section{System Design}
-The project focuses on the implementation of an algorithm that can detect disturbance in crowd. It considers how flow-vector magnitudes change over time, which are collected for short frame sequences, and then classified as either normal or abnormal situation using a classifier.
+The project focuses on the implementation of an algorithm that can detect disturbance in crowd. The design of the project is shown in Fig. 4.1. It considers how flow-vector magnitudes change over time, which are collected for short frame sequences, and then classified as either normal or abnormal situation using a classifier.
 \par
 The aim of the project is to keep the processing very quick, a detection should be made within a few seconds of the outbreak of violence. It has to detect the change of normal behaviour to abnormal behaviour with the shortest delay from the time that the change has occurred.
 
@@ -24,7 +24,7 @@ After the features have been extracted, classification can done with the help of
 \subsection{Detection}
 Detection in a video footage is the final output of the proposed algorithm. It is taking place with the help classifier model that is being trained in the above step. According to the base paper, a sequence of 10 frames i.e on an average two-fifth of a second is enough to detect violence in a footage. Detection may be further improved by continuous training of neural net in real-time also.
 \section{Dataset}
-In-the-wild violence dataset is chosen as dataset for the project. The dataset consists of 246 videos in which half are violent and other half are non-violent. The video duration range from 1.04 sec to 6.52 sec with an average duration of 3.60 sec. All the videos are downloaded from YouTube which are produced under in-the-wild and uncontrolled conditions presenting a wide range of real-world viewing conditions, video qualities and surveillance scenarios. Videos are compressed using the DivX codec (mpeg4) and resized to 240 X 320 pixels.
+In-the-wild violence dataset is chosen as dataset for the project. The dataset consists of 246 videos in which half are violent and other half are non-violent. The video duration range from 1.04 sec to 6.52 sec with an average duration of 3.60 sec as shown in Fig. 4.2. All the videos are downloaded from YouTube which are produced under in-the-wild and uncontrolled conditions presenting a wide range of real-world viewing conditions, video qualities and surveillance scenarios. Videos are compressed using the DivX codec (mpeg4) and resized to 240 X 320 pixels.
 
 \begin{center}
 \begin{figure}[H]
@@ -34,15 +34,15 @@ In-the-wild violence dataset is chosen as dataset for the project. The dataset c
 \end{figure}
 \end{center}
 \section{Data Flow Diagram}
-A data flow diagram is a graphical representation of the "flow" of data through an information system, modelling its process aspects. A DFD is often used as a preliminary step to create an overview of the system without going into great detail, which can later be elaborated. DFD's can be used for the visualization of data processing.
+A data flow diagram is a graphical representation of the "flow" of data through an information system, modelling its process aspects. A DFD is often used as a preliminary step to create an overview of the system without going into great detail, which can later be elaborated. DFD's can be used for the visualization of data processing. Level-0 DFD of the proposed system is shown in the Fig. 4.3.
 \par
-Data flow diagrams are also known as bubble charts. DFD is a designing tool used in the top-down approach to system design. This context-level DFD is next "exploded", to produce a level-1 DFD that shows some of the detail of the system being modeled. The Level-1 DFD shows how the system is divided into subsystems, each of which deals with one or more of the data flows to from an external agent, and which together provide all of the functionality of the system as a whole. It also identifies internal data stores that must be present in order for the system to do its job, and shows the flow of data between the various parts of the system.
+Data flow diagrams are also known as bubble charts. DFD is a designing tool used in the top-down approach to system design. This context-level DFD is next "exploded", to produce a level-1 DFD that shows some of the detail of the system being modeled. The Level-1 DFD shows how the system is divided into subsystems, each of which deals with one or more of the data flows to from an external agent, and which together provide all of the functionality of the system as a whole. It also identifies internal data stores that must be present in order for the system to do its job, and shows the flow of data between the various parts of the system. Level-1 DFD of the proposed system is shown in the Fig. 4.4.
 
 \begin{center}
 \begin{figure}[H]
 \centering
 \includegraphics[width = \linewidth]{dfd0.png}
-\caption{Data Flow Diagram Level 0}
+\caption{Data Flow Diagram Level 0 of the proposed system}
 \end{figure}
 \end{center}
 
@@ -50,7 +50,7 @@ Data flow diagrams are also known as bubble charts. DFD is a designing tool used
 \begin{figure}[H]
 \centering
 \includegraphics[width = \linewidth]{dfd1.png}
-\caption{Data Flow Diagram Level 1}
+\caption{Data Flow Diagram Level 1 of the proposed system}
 \end{figure}
 \end{center}
 
@@ -99,7 +99,7 @@ A diagram is a graphical representation of a set of elements. These are nine kin
 
 \end{enumerate}
 \subsection{Component Diagram}
-Automated Surveillance and Alert Generation System has the following components:
+Component diagram of the proposed system is shown in Fig. 4.5. It has the following components:
 \begin{enumerate}
 	\item OpenCV
 	\item Bob
@@ -111,7 +111,7 @@ Automated Surveillance and Alert Generation System has the following components:
 \begin{figure}[H]
 \centering
 \includegraphics[width = \linewidth]{component.png}
-\caption{Component Diagram}
+\caption{Component Diagram of the proposed system}
 \end{figure}
 \end{center}
 \subsubsection{OpenCV}

@@ -10,7 +10,7 @@ The following partial results will be present in the further sections:
 	\item Real Time Surveillance on Camera Input
 \end{itemize}
 \section{Video Preprocessing}
- Input frames are resized to 240 X 320. They are further converted to grayscale.
+ Input frames are resized to 240 X 320. They are further converted to grayscale as shown in Fig. 6.1.
 \begin{center}
 \begin{figure}[H]
 \centering
@@ -19,7 +19,7 @@ The following partial results will be present in the further sections:
 \end{figure}
 \end{center}
 \section{Optical Flow}
-Optical flow refers to the visible motion of an object in an image, and the apparent 'flow' of pixels in an image. It is the result of 3d motion being projected on a 2-d image plane. 
+Optical flow refers to the visible motion of an object in an image, and the apparent 'flow' of pixels in an image. It is the result of 3d motion being projected on a 2-d image plane. Fig. 6.2 shows two consecutive frames of a video in which car is in motion and the output of optical flow. The black regions in output shows the relative motion of car between the frames.
 \begin{figure}[htp]
 \centering
 \includegraphics[width=.3\textwidth]{car1.jpg}\hfill
@@ -87,21 +87,21 @@ emphstyle={\color{self}\slshape},
 \section{Neural Net N-folds Cross Verification}
 Seven fold cross validation is the validation manner which is adopted in
 experiments. All the videos are divided into seven heaps with the same ratio between
-violent and non-violent ones. At each time one distinct heap is selected for testing and the other six heaps for training. This procedure is then repeated for seven times.
+violent and non-violent ones. At each time one distinct heap is selected for testing and the other six heaps for training. This procedure is then repeated for seven times. The accuracy for seven-folds and overall accuracy is shown in Fig. 6.3.
 \begin{figure}[H]
 \centering
 \includegraphics[width = \linewidth]{84_nfolds_keras.png}
 \caption{Neural Net Folds Accuracy}
 \end{figure}
 \section{Real Time Surveillance on Video Input}
-The usual FPS rate of a standard surveillance is 25. Which means our algorithm has to process each frame in less than 1/25 th of a second. Real Time Surveillance of a Video outputs on terminal and it provides the exact second where the frames go from violent to non-violent. So with the help of this we are able to decide the exact second where the violence occurs. 
+The usual FPS rate of a standard surveillance is 25. Which means our algorithm has to process each frame in less than 1/25 th of a second. Real Time Surveillance of a Video outputs on terminal and it provides the exact second where the frames go from violent to non-violent as shown in Fig. 6.4. So with the help of this we are able to decide the exact second where the violence occurs. 
 \begin{figure}[H]
 \centering
 \includegraphics[width = \linewidth]{video_surveillance_output.png}
 \caption{Surveillance on Video}
 \end{figure}
 \section{Real Time Surveillance on Camera Input}
-OpenCV helps us to take video input directly from the camera connected. It can be externally connected through a usb port or it can be the internal webcam.
+OpenCV helps us to take video input directly from the camera connected. It can be externally connected through a usb port or it can be the internal webcam. Surveillance of webcam video is shown in Fig. 6.5.
 \begin{figure}[H]
 \centering
 \includegraphics[width = \linewidth]{camera_surveillance_output.png}
