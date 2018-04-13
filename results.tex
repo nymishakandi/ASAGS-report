@@ -83,7 +83,34 @@ emphstyle={\color{self}\slshape},
 \linespread{1.3}\\
 \textbf{Sample Vif}
 \lstinputlisting[language = Python]{sample_vif.txt}
-
+\section{Neural Net Accuracy Testing}
+\begin{figure}[H]
+\centering
+\includegraphics[width = \linewidth]{7030.png}
+\caption{Accuracy of Neural Net by 70:30 method}
+\end{figure}
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+&p&n\\
+\hline
+P&33&2\\
+\hline
+N&5&32\\
+\hline
+\end{tabular}
+\caption{Confusion Matrix for 70:30 dataset}
+\end{table}
+So as to test the accuracy of the generated neural net.
+The dataset which contains 246 videos is divided in the ratio of 70:30. 70\% of the data is used to train the neural net, 30\% of the data is used to test the accuracy of generated model. Output in Fig. 3 shows that the accuracy obtained is 90.27\% . As we can see the confusion matrix in Table 1, the number of False Negatives are just 2, that means there are only 2 cases in the test set which are actually violent but our system was not able to detect it. Whereas there were 5 cases in which videos were not violent but our system detected some violence. \\
+Following are some results obtained:
+\begin{itemize}
+	\item Accuracy = TP/total = 0.9027
+	\item True Positive Rate = TP/P = 0.9428
+	\item Precision = TP/(predicted yes) = 0.8684
+	\item Specificity = TN/(actual no) = 0.8648
+\end{itemize}
 \section{Neural Net N-folds Cross Verification}
 Seven fold cross validation is the validation manner which is adopted in
 experiments. All the videos are divided into seven heaps with the same ratio between
@@ -97,9 +124,39 @@ violent and non-violent ones. At each time one distinct heap is selected for tes
 The usual FPS rate of a standard surveillance is 25. Which means our algorithm has to process each frame in less than 1/25 th of a second. Real Time Surveillance of a Video outputs on terminal and it provides the exact second where the frames go from violent to non-violent as shown in Fig. 6.4. So with the help of this we are able to decide the exact second where the violence occurs. 
 \begin{figure}[H]
 \centering
-\includegraphics[width = \linewidth]{video_surveillance_output.png}
+\includegraphics[width = \linewidth]{process_time.png}
 \caption{Surveillance on Video}
 \end{figure}
+Consider the above figure, it shows where the violence occurs along with the processing time required to detect the violence at that moment. As we can see the processing time required for the complete video is less than the play time of the video. Hence it shows that surveillance is taking place in real time.\\
+Consider the following example:
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.5]{scene1.png}
+\caption{No Violence}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.5]{scene3.png}
+\caption{Violence about to start}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.5]{scene4.png}
+\caption{Slight Violence}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.5]{scene5.png}
+\caption{Furious Violent}
+\end{figure}
+\par
+Above four frames are taken from a surveillance video. In fig violence has not yet started, in fig  violence has not started but it is about to start. In fig violence has started and in fig there is furious violence.
+\begin{figure}[H]
+\centering
+\includegraphics[width = \linewidth]{terminal_out.png}
+\caption{Surveillance output of video in Terminal}
+\end{figure}
+As we can see, the surveillance output is initially very less since there is no violence, as the chance of violence is increased due to increase in motion the corresponding value appering on the terminal also increases. When there is furious violence the value goes upto 0.999. Further the violence decrease and we can see the output values also decrease.
 \section{Real Time Surveillance on Camera Input}
 OpenCV helps us to take video input directly from the camera connected. It can be externally connected through a usb port or it can be the internal webcam. Surveillance of webcam video is shown in Fig. 6.5.
 \begin{figure}[H]
