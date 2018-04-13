@@ -6,7 +6,7 @@ Surveillance footage is usually generated of size 240 x 320 i.e of aspect ratio 
 Video conversion command:-\\
 \textit{ffmpeg -i {inputVideo} -vf scale=320:240 outputVideo.avi}
 \par
-Further the frame is resized to 75 x 100 size as shown in the Fig. 5.1 maintaining the same aspect ratio using openCV functions. This resized frame is further converted to grayscale using openCV cvtColor() method. \\
+Further the frame is resized to 75 x 100 size as shown in the Fig. 4.1 maintaining the same aspect ratio using openCV functions. This resized frame is further converted to grayscale using openCV cvtColor() method. \\
 Size reduction command:\\
 frame = cv2.resize(frame, dim, interpolation = cv2.INTER\_AREA)\\
 Grayscale conversion commands: \\
@@ -19,7 +19,7 @@ frame = cv2.cvtColor(frame,cv2.COLOR\_BGR2GRAY)
 \end{figure}
 \end{center}
 \section{Optical Flow}
-Optical Flow is estimated between the pair of consecutive frames which gives a flow vector for each pixel in the current frame, matching it to pixel in next frame as shown in the Fig. 5.2. C. Liu`s Optical Flow algorithm is used. It was initially developed in C++ which MATLAB can easily port. Conda package was used to port the algorithm into Python. \par
+Optical Flow is estimated between the pair of consecutive frames which gives a flow vector for each pixel in the current frame, matching it to pixel in next frame as shown in the Fig. 4.2. C. Liu`s Optical Flow algorithm is used. It was initially developed in C++ which MATLAB can easily port. Conda package was used to port the algorithm into Python. \par
 	In our implementation we are considering two frames in every four frames i.e the third frame from current frame and calculating optical flow between them. This process continues for entire video. \par \textbf{bob.ip.optflow.liu.sor.flow(frame1,frame2)} is used to calculate optical flow. It returns value of each pixel into a numpy array of dimension equal to resolution of the frame.
 \begin{center}
 \begin{figure}[H]
@@ -50,11 +50,15 @@ This average binary vector obtained is known as Violent Flow Descriptor (ViF). T
 	After ViF’s are obtained for a video, a histogram in created of bin size 0.05 and from range 0.0 to 1.0. Which means 21 bins are created. Generated ViF is divided into 16 parts, each part is mapped into a separate histogram, the counts are further normalized by total counts obtained. This process is known as Histogram normalization. Now all these histogram bins values for all 16 parts are appended one after the other leading to generation 336 values for a particular video. 
 These 336 values are used for training the neural net and for predicting using the neural net.
 \section{Training Neural Net}
-Keras module along with TensorFlow backend is used to build the Neural Net and Train it. The Neural Net built contains an Input Layer, two Dense Layers and an Output Layer as shown in the Fig. 5.3. Each layer is of 336 nodes. Input to the neural net will the Violent Flow Features(ViF) which is a numpy array of dimensions 129*336. Activation function for Input and Middle Layers is ReLU(Rectifier Linear Unit) and for output layer, Sigmoid activation function is used. Training is done for 150 epochs with batch size of 10. Outputs will in the range of 0.0 to 1.0 which will rounded off accordingly. \\
-ReLU activation Function \\
+Keras module along with TensorFlow backend is used to build the Neural Net and Train it. The Neural Net built contains an Input Layer, two Dense Layers and an Output Layer as shown in the Fig. 4.3. Each layer is of 336 nodes. Input to the neural net will the Violent Flow Features(ViF) which is a numpy array of dimensions 129*336. Activation function for Input and Middle Layers is ReLU(Rectifier Linear Unit) and for output layer, Sigmoid activation function is used. Training is done for 150 epochs with batch size of 10. Outputs will in the range of 0.0 to 1.0 which will rounded off accordingly. \\
+\textbf{ReLU activation Function} \\
+\begin{equation}
 f(x) = max(0,x)\\
-Sigmoid activation function \\
-S(x) = $\frac{1}{1+e^{-x}} = \frac{e^x}{1+e^x}$
+\end{equation}
+\textbf{Sigmoid activation function} \\
+\begin{equation}
+S(x) = \frac{1}{1+e^{-x}} = \frac{e^x}{1+e^x}
+\end{equation}
 \begin{center}
 \begin{figure}[H]
 \centering

@@ -10,7 +10,7 @@ The following partial results will be present in the further sections:
 	\item Real Time Surveillance on Camera Input
 \end{itemize}
 \section{Video Preprocessing}
- Input frames are resized to 240 X 320. They are further converted to grayscale as shown in Fig. 6.1.
+ Input frames are resized to 240 X 320. They are further converted to grayscale as shown in Fig. 5.1.
 \begin{center}
 \begin{figure}[H]
 \centering
@@ -19,7 +19,7 @@ The following partial results will be present in the further sections:
 \end{figure}
 \end{center}
 \section{Optical Flow}
-Optical flow refers to the visible motion of an object in an image, and the apparent 'flow' of pixels in an image. It is the result of 3d motion being projected on a 2-d image plane. Fig. 6.2 shows two consecutive frames of a video in which car is in motion and the output of optical flow. The black regions in output shows the relative motion of car between the frames.
+Optical flow refers to the visible motion of an object in an image, and the apparent 'flow' of pixels in an image. It is the result of 3d motion being projected on a 2-d image plane. Fig. 5.2 shows two consecutive frames of a video in which car is in motion and the output of optical flow. The black regions in output shows the relative motion of car between the frames.
 \begin{figure}[htp]
 \centering
 \includegraphics[width=.3\textwidth]{car1.jpg}\hfill
@@ -103,7 +103,7 @@ N&5&32\\
 \caption{Confusion Matrix for 70:30 dataset}
 \end{table}
 So as to test the accuracy of the generated neural net.
-The dataset which contains 246 videos is divided in the ratio of 70:30. 70\% of the data is used to train the neural net, 30\% of the data is used to test the accuracy of generated model. Output in Fig. 3 shows that the accuracy obtained is 90.27\% . As we can see the confusion matrix in Table 1, the number of False Negatives are just 2, that means there are only 2 cases in the test set which are actually violent but our system was not able to detect it. Whereas there were 5 cases in which videos were not violent but our system detected some violence. \\
+The dataset which contains 246 videos is divided in the ratio of 70:30. 70\% of the data is used to train the neural net, 30\% of the data is used to test the accuracy of generated model. Output in Fig. 5.3 shows that the accuracy obtained is 90.27\% . As we can see in the confusion matrix Table 5.1, the number of False Negatives are just 2, that means there are only 2 cases in the test set which are actually violent but our system was not able to detect it. Whereas there were 5 cases in which videos were not violent but our system detected some violence. \\
 Following are some results obtained:
 \begin{itemize}
 	\item Accuracy = TP/total = 0.9027
@@ -114,14 +114,14 @@ Following are some results obtained:
 \section{Neural Net N-folds Cross Verification}
 Seven fold cross validation is the validation manner which is adopted in
 experiments. All the videos are divided into seven heaps with the same ratio between
-violent and non-violent ones. At each time one distinct heap is selected for testing and the other six heaps for training. This procedure is then repeated for seven times. The accuracy for seven-folds and overall accuracy is shown in Fig. 6.3.
+violent and non-violent ones. At each time one distinct heap is selected for testing and the other six heaps for training. This procedure is then repeated for seven times. The accuracy for seven-folds and overall accuracy is shown in Fig. 5.4.
 \begin{figure}[H]
 \centering
 \includegraphics[width = \linewidth]{84_nfolds_keras.png}
 \caption{Neural Net Folds Accuracy}
 \end{figure}
 \section{Real Time Surveillance on Video Input}
-The usual FPS rate of a standard surveillance is 25. Which means our algorithm has to process each frame in less than 1/25 th of a second. Real Time Surveillance of a Video outputs on terminal and it provides the exact second where the frames go from violent to non-violent as shown in Fig. 6.4. So with the help of this we are able to decide the exact second where the violence occurs. 
+The usual FPS rate of a standard surveillance is 25. Which means our algorithm has to process each frame in less than 1/25 th of a second. Real Time Surveillance of a Video outputs on terminal and it provides the exact second where the frames go from violent to non-violent as shown in Fig. 5.5. So with the help of this we are able to decide the exact second where the violence occurs. 
 \begin{figure}[H]
 \centering
 \includegraphics[width = \linewidth]{process_time.png}
@@ -147,18 +147,18 @@ Consider the following example:
 \begin{figure}[H]
 \centering
 \includegraphics[scale = 0.5]{scene5.png}
-\caption{Furious Violent}
+\caption{Furious Violence}
 \end{figure}
 \par
-Above four frames are taken from a surveillance video. In fig violence has not yet started, in fig  violence has not started but it is about to start. In fig violence has started and in fig there is furious violence.
+Above four frames are taken from a surveillance video. In Fig. 5.6 violence has not yet started, in Fig. 5.7 violence has not started but it is about to start. In Fig. 5.8 violence has started and in Fig. 5.9 there is furious violence.
 \begin{figure}[H]
 \centering
 \includegraphics[width = \linewidth]{terminal_out.png}
 \caption{Surveillance output of video in Terminal}
 \end{figure}
-As we can see, the surveillance output is initially very less since there is no violence, as the chance of violence is increased due to increase in motion the corresponding value appering on the terminal also increases. When there is furious violence the value goes upto 0.999. Further the violence decrease and we can see the output values also decrease.
+As we can see in Fig. 5.10, the surveillance output is initially very less since there is no violence, as the chance of violence is increased due to increase in motion the corresponding value appering on the terminal also increases. When there is furious violence the value goes upto 0.999. Further the violence decrease and we can see the output values also decrease.
 \section{Real Time Surveillance on Camera Input}
-OpenCV helps us to take video input directly from the camera connected. It can be externally connected through a usb port or it can be the internal webcam. Surveillance of webcam video is shown in Fig. 6.5.
+OpenCV helps us to take video input directly from the camera connected. It can be externally connected through a usb port or it can be the internal webcam. Surveillance of webcam video is shown in Fig. 5.11.
 \begin{figure}[H]
 \centering
 \includegraphics[width = \linewidth]{camera_surveillance_output.png}
