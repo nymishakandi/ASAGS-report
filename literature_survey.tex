@@ -92,7 +92,7 @@ populous, public, rabble and throng. Opinion researcher Vincent Price compares m
 and crowds, saying that "Crowds are defined by their shared emotional experiences, but
 masses are defined by their interpersonal isolation."
 \subsection{Analysis of Crowd}
-Crowd Analysis is an important part aspect real time surveillance since rarely we see CCTV cameras in private areas. Areas under surveillance(public area) usually have a lot of crowd.
+Crowd Analysis\cite{crowd} is an important part aspect real time surveillance since rarely we see CCTV cameras in private areas. Areas under surveillance(public area) usually have a lot of crowd.
 Crowd analysis involves the analysis of data gained by studying the natural
 movement of groups. Masses of bodies, particularly humans, are under observation
 of these crowd tracking analyses that include how a particular a group of people move and when a
@@ -184,14 +184,14 @@ I(x,y,t) = T(x + \Delta x, y + \Delta y, t + \Delta t)
 \end{equation}
 
 \section{Violent Flow(ViF) Descriptors}
-For a sequence of frames, Violent Flows(ViF) Descriptor are produced by first estimating Optical Flow. Optical Flow gives a flow vector of a pixel in current frame matching it with a pixel in next frame. Magnitudes of these flow vectors are calculated which are arbitrary components which are dependent on frame resolution, different motions in different spatio-temporal locations, etc. By comparing magnitudes, meaningful measures of the significance of observed motion magnitudes in each frame compared to its predecessor are obtained. Binary indicators for each pixel is obtained by comparing change of magnitudes of each pixel with mean change of magnitudes of a frame. Average of these binary indicators are calculated for each pixel over all frames. Later these average values of binary indicators are divided into M * N non-overlapping cells in which each cell contain magnitude change frequencies. Those frequencies in the cells are represented by fixed-sized histogram and all the histograms are concantenated to form a single descriptor vector. In a simple way, ViF descriptor is a vector of frequencies quantized values of binaty indicators. 
+For a sequence of frames, Violent Flows(ViF) Descriptors\cite{hassner} are produced by first estimating Optical Flow. Optical Flow\cite{liu} gives a flow vector of a pixel in current frame matching it with a pixel in next frame. Magnitudes of these flow vectors are calculated which are arbitrary components which are dependent on frame resolution, different motions in different spatio-temporal locations, etc. By comparing magnitudes, meaningful measures of the significance of observed motion magnitudes in each frame compared to its predecessor are obtained. Binary indicators for each pixel is obtained by comparing change of magnitudes of each pixel with mean change of magnitudes of a frame. Average of these binary indicators are calculated for each pixel over all frames. Later these average values of binary indicators are divided into M * N non-overlapping cells in which each cell contain magnitude change frequencies. Those frequencies in the cells are represented by fixed-sized histogram and all the histograms are concantenated to form a single descriptor vector. In a simple way, ViF descriptor is a vector of frequencies quantized values of binaty indicators. 
 
 \section{Oriented Violent Flows(OViF)}
-ViF doesn't consider difference in direction of the same pixel in sequential frames and treat there is no difference if pixels differ only in directions. OViF considers direction of the pixel and it is calculated by using
+ViF\cite{hassner} doesn't consider difference in direction of the same pixel in sequential frames and treat there is no difference if pixels differ only in directions. OViF\cite{ovif} considers direction of the pixel and it is calculated by using
 \begin{equation}
 \phi_{i,j,t} = arctan(V^y_{i,j,t}/V^x_{i,j,t}) 
 \end{equation}
-Here, t means the t-th frame in a video sequence, and (i, j) indicates the pixel location. Then, for each flow map which corresponds to a frame, we partition it into M × N non-overlapping blocks. After this, since $360^0$ can be equally divided into B sectors and each sector corresponds to a bin of a histogram, the flow-vector magnitude $|V_{i,j,t}|$ is added into the bin where the flow-vector angle $\phi_{i,j,t}$ locates.For each block, we get a histogram and these histograms are then concatenated into a single vector H, which is called Histogram of Oriented Optical Flow (HOOF) with X-dimensions, $X = M \times N \times B$.
+Here, t means the t-th frame in a video sequence, and (i, j) indicates the pixel location. Then, for each flow map which corresponds to a frame, we partition it into M × N non-overlapping blocks. After this, since $360^0$ can be equally divided into B sectors and each sector corresponds to a bin of a histogram, the flow-vector magnitude $|V_{i,j,t}|$ is added into the bin where the flow-vector angle $\phi_{i,j,t}$ locates.For each block, we get a histogram and these histograms are then concatenated into a single vector H, which is called Histogram of Oriented Optical Flow (HOOF)\cite{ovif} with X-dimensions, $X = M \times N \times B$.
 \par
 Subsequently, the HOOF vectors are used to obtain binary indicators:
 \begin{equation}
