@@ -6,7 +6,7 @@ import math
 from keras.models import model_from_json
 import time
 
-class ContinousSurv:
+class ContinousSurv2:
     def __init__(self):
         json_file = open('model_100.json', 'r')
         loaded_model_json = json_file.read()
@@ -60,6 +60,7 @@ class ContinousSurv:
     	return frame_hist
 
     def doSurveillanceFromVideo(self):
+        video_time_start = time.time()
         FPS = round(self.vid.getFPS())
         print 'FPS is : '+str(FPS)
         while True:
@@ -95,7 +96,7 @@ class ContinousSurv:
                 pred = round(pred[0][0])
                 if pred == 1:
                     time_violence = float(frame_number) / self.vid.fps
-                    print 'violent  ---   '+str(int(time_violence))+' seconds'
+                    print 'violent  ---   '+str(int(time_violence))+' seconds , processing time : ' + str(time.time() - video_time_start)
 
     def doSurveillanceFromCamera(self):
         start_time = time.time()
